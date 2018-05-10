@@ -1,14 +1,24 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class CharacterSelection : MonoBehaviour
 {
     private GameObject[] characterList;
     private int index;
 
+
+    void Awake()
+    {
+       // GameObject[] objct = GameObject.FindGameObjectsWithTag("Character");
+      //  if (objct.Length > 1) Destroy(this.gameObject);
+      //  DontDestroyOnLoad(this.gameObject);
+    }
+
     private void Start()
     {
+        index = PlayerPrefs.GetInt("CharacterSelected");
         characterList = new GameObject[3];
 
         //Fill the aray with our models
@@ -23,10 +33,10 @@ public class CharacterSelection : MonoBehaviour
             go.SetActive(false);
         }
 
-        //we toggle on the first index
-        if (characterList[0])
+        //we toggle on the selected character
+        if (characterList[index])
         {
-            characterList[0].SetActive(true);
+            characterList[index].SetActive(true);
         }
 
     }
@@ -63,6 +73,12 @@ public class CharacterSelection : MonoBehaviour
         characterList[index].SetActive(true);
 
 
+    }
+
+    public void SelectButton()
+    {
+        PlayerPrefs.SetInt("CharacterSelected", index);
+        SceneManager.LoadScene("GameScene");
     }
 
 }
