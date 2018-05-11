@@ -13,7 +13,7 @@ public class MovePlayer : MonoBehaviour {
 	void Update () 
 	{
 		PlayerMove();
-
+		PlayerRaycast();
 	}
 
     void PlayerMove()
@@ -22,7 +22,7 @@ public class MovePlayer : MonoBehaviour {
 		moveX = Input.GetAxis("Horizontal");
 		//Animations
 
-        if (Input.GetButtonDown ("Jump") && isGrounded == !true)
+        if (Input.GetButtonDown ("Jump") && isGrounded == true)
 		{
 			Jump();
 		}
@@ -62,8 +62,16 @@ public class MovePlayer : MonoBehaviour {
 		Debug.Log("grounded with" + col.collider.name);
 	    if (col.gameObject.tag == "Ground") 	
 		{
-
 			isGrounded = true;
+		}
+	}
+    void PlayerRaycast()
+	{
+		RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.down);
+        if (hit.distance < 0.9f && hit.collider.tag == "Enemy")
+		{
+			GetComponent<Rigidbody2D>().AddForce(Vector2.up * 1000); 
+
 		}
 	}
 }
