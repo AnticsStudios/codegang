@@ -5,9 +5,10 @@ using UnityEngine;
 public class MovePlayer : MonoBehaviour {
 	public int playerSpeed = 10;
 	private bool facingRight = true;
-	public int playerJumpPower = 200;
+	private int playerJumpPower = 300;
 	private float moveX;
 	public bool isGrounded;
+    public bool isAboveEnemy;
 	
 	// Update is called once per frame
 	void Update () 
@@ -45,6 +46,7 @@ public class MovePlayer : MonoBehaviour {
 
     void Jump()
 	{
+        //
 		isGrounded = false;
 		GetComponent<Rigidbody2D>().AddForce(Vector2.up * playerJumpPower);
 	}
@@ -59,7 +61,6 @@ public class MovePlayer : MonoBehaviour {
 
 	void OnCollisionEnter2D(Collision2D col)
 	{
-		Debug.Log("grounded with" + col.collider.name);
 	    if (col.gameObject.tag == "Ground") 	
 		{
 			isGrounded = true;
@@ -70,8 +71,9 @@ public class MovePlayer : MonoBehaviour {
 		RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.down);
         if (hit.distance < 0.9f && hit.collider.tag == "Enemy")
 		{
-			GetComponent<Rigidbody2D>().AddForce(Vector2.up * 1000); 
-
-		}
+            GetComponent<Rigidbody2D>().AddForce(Vector2.up * 1000);
+            isAboveEnemy = true;
+        }
+        else { isAboveEnemy = false; }
 	}
 }

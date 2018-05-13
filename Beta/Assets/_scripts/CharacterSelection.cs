@@ -8,14 +8,6 @@ public class CharacterSelection : MonoBehaviour
     private GameObject[] characterList;
     private int index;
 
-
-    void Awake()
-    {
-       // GameObject[] objct = GameObject.FindGameObjectsWithTag("Character");
-      //  if (objct.Length > 1) Destroy(this.gameObject);
-      //  DontDestroyOnLoad(this.gameObject);
-    }
-
     private void Start()
     {
         index = PlayerPrefs.GetInt("CharacterSelected");
@@ -77,7 +69,10 @@ public class CharacterSelection : MonoBehaviour
 
     public void SelectButton()
     {
+        //select player and set into something called PlayerPrefs
+        //this will store the player so for next selection it is the character chosen
         PlayerPrefs.SetInt("CharacterSelected", index);
+        //load the scene now
         SceneManager.LoadScene("GameScene");
     }
 
