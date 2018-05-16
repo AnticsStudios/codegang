@@ -3,14 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class MovePlayer : MonoBehaviour {
-	public int playerSpeed = 5;
+	public int playerSpeed = 10;
 	private bool facingRight = true;
-	private int playerJumpPower = 525;
+	private int playerJumpPower = 300;
 	private float moveX;
-    public bool isGrounded;
-    public bool secondJump;
+	public bool isGrounded;
     public bool isAboveEnemy;
-    public int jumps = 0;
 	
 	// Update is called once per frame
 	void Update () 
@@ -25,8 +23,12 @@ public class MovePlayer : MonoBehaviour {
 		moveX = Input.GetAxis("Horizontal");
 		//Animations
 
+<<<<<<< HEAD
         if (Input.GetButtonDown ("Jump") /*&& isGrounded == true*/ && secondJump == false)
 
+=======
+        if (Input.GetButtonDown ("Jump") && isGrounded == true)
+>>>>>>> parent of 69d4c95... fixed enemy ai and added Background
 		{
 			Jump();
 		}
@@ -49,19 +51,9 @@ public class MovePlayer : MonoBehaviour {
 
     void Jump()
 	{
-        jumps++;
         //
-        isGrounded = false;
-       
-
-        if (jumps > 1)
-        {
-            GetComponent<Rigidbody2D>().AddForce(Vector2.up * (playerJumpPower - 50)); 
-            secondJump = true;
-        }else
-        {
-            GetComponent<Rigidbody2D>().AddForce(Vector2.up * playerJumpPower);
-        }
+		isGrounded = false;
+		GetComponent<Rigidbody2D>().AddForce(Vector2.up * playerJumpPower);
 	}
 
 	void FlipPlayer()
@@ -76,16 +68,12 @@ public class MovePlayer : MonoBehaviour {
 	{
 	    if (col.gameObject.tag == "Ground") 	
 		{
-            jumps = 0;
-            isGrounded = true;
-            secondJump = false;
-          
-        }
+			isGrounded = true;
+		}
 	}
     void PlayerRaycast()
 	{
-        Debug.DrawLine(transform.position, Vector2.down);
-        RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.down);
+		RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.down);
         if (hit.distance < 0.9f && hit.collider.tag == "Enemy")
 		{
             GetComponent<Rigidbody2D>().AddForce(Vector2.up * 1000);
