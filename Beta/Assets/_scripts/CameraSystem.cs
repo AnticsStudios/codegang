@@ -6,9 +6,9 @@ public class CameraSystem : MonoBehaviour {
     
 	private GameObject player;
 	private float xMin = 0.2f;
-	private float xMax = 20f;
-	private float yMin = 0.8f;
-	private float yMax = 1.2f;
+	private float xMax = 2000.0f;
+	private float yMin = 2.5f;
+	private float yMax = 10.0f;
 
 	// Use this for initialization
 	void Start () {
