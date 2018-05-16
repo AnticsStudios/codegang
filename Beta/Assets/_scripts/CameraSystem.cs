@@ -11,12 +11,14 @@ public class CameraSystem : MonoBehaviour {
 	private float yMax = 1.2f;
 
 	// Use this for initialization
-	void Start () {
+	void Start () 
+	{
 		player = GameObject.FindGameObjectWithTag ("Player");
 	}
 	
 
-	void LateUpdate () {
+	void LateUpdate () 
+	{
 		float x = Mathf.Clamp (player.transform.position.x, xMin, xMax);
 		float y = Mathf.Clamp (player.transform.position.y, yMin, yMax);
 		gameObject.transform.position = new Vector3(x, y, gameObject.transform.position.z);

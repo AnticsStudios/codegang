@@ -4,15 +4,16 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class PlayerHealth : MonoBehaviour {
-	public int health = 100;
+	private int playerHealth = PlayerPrefs.GetInt("playerTotalHealth");
 	public bool hasDied;
-	// Use this for initialization
-	void Start () {
+
+	void Start () 
+	{
 		hasDied = false;
 	}
-	
-	// Update is called once per frame
-	void Update () {
+
+	void Update () 
+	{
 		if (gameObject.transform.position.y < -10)
 		{
 			hasDied = true;
