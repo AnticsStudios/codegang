@@ -1,1 +1,9 @@
+<<<<<<< HEAD
+<<<<<<< HEAD
+m_EditorVersion: 2017.3.0f3
+=======
 m_EditorVersion: 2018.1.0f2
+>>>>>>> 6a7cd897ace4c52a693a4b88d4051f5cf5b0ff48
+=======
+m_EditorVersion: 2017.3.1f1
+>>>>>>> parent of 69d4c95... fixed enemy ai and added Background
