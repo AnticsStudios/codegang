@@ -7,7 +7,7 @@ public class PlayerScore : MonoBehaviour
 {
 
 	public GameObject playerScoreUI;
-	private int playerScore = PlayerPrefs.GetInt("playerTotalScore");
+	private int playerScore; //= PlayerPrefs.GetInt("playerTotalScore");
 
 
 	void Update()
