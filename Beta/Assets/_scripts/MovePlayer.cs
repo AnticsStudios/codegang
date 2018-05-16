@@ -26,6 +26,7 @@ public class MovePlayer : MonoBehaviour {
 		//Animations
 
         if (Input.GetButtonDown ("Jump") /*&& isGrounded == true*/ && secondJump == false)
+
 		{
 			Jump();
 		}
