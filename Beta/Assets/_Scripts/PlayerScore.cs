@@ -5,11 +5,12 @@ using UnityEngine.UI;
 
 public class PlayerScore : MonoBehaviour
 {
-	public int playerScore = 0;
+
 	public GameObject playerScoreUI;
+	private int playerScore = PlayerPrefs.GetInt("playerTotalScore");
 
 
-    void Update()
+	void Update()
 	{
         
         //print UI to screen
@@ -21,24 +22,21 @@ public class PlayerScore : MonoBehaviour
         //if tag is enemy, call score basic for now 
         if (trig.gameObject.tag == "Enemy")
         {
-            PlayerPrefs.GetInt("CharacterSelected");
-            
-            MovePlayer isAboveEnemy = GetComponent<MovePlayer>();
+			//MovePlayer isAboveEnemy = GetComponent<MovePlayer>();
+
             //call score function
-            if (isAboveEnemy == true)
-            {
-                Debug.Log(isAboveEnemy);
-                Score();
-            }
+            //if (isAboveEnemy == true)
+            //{
+                Score(50);
+            //}
         }
 	}
 
-    void Score()
+    void Score(int amountOfPoints)
     {
-        //add score 
-        playerScore += 50;
-       Destroy(GetComponent<BoxCollider>());
-        
+		//add score 
+		playerScore += amountOfPoints;
+		PlayerPrefs.SetInt("playerTotalScore", playerScore);
     }
 }
 

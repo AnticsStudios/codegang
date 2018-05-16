@@ -22,7 +22,7 @@ public class MovePlayer : MonoBehaviour {
 		//Controls
 		moveX = Input.GetAxis("Horizontal");
 		//Animations
-
+        //still need to be placed
         if (Input.GetButtonDown ("Jump") && isGrounded == true)
 		{
 			Jump();
