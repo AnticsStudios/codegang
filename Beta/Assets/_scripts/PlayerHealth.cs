@@ -4,12 +4,21 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class PlayerHealth : MonoBehaviour {
-	private int playerHealth = PlayerPrefs.GetInt("playerTotalHealth");
+    private int playerHealth;
 	public bool hasDied;
 
 	void Start () 
 	{
-		hasDied = false;
+        hasDied = false;
+        if (PlayerPrefs.GetInt("playerTotalHealth") != 0)
+        {
+            playerHealth = PlayerPrefs.GetInt("playerTotalHealth");
+        }
+        else
+        {
+            PlayerPrefs.SetInt("playerTotalHealth", 100);
+        }
+
 	}
 
 	void Update () 

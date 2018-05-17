@@ -7,28 +7,42 @@ public class PlayerScore : MonoBehaviour
 {
 
 	public GameObject playerScoreUI;
-	private int playerScore; //= PlayerPrefs.GetInt("playerTotalScore");
+    public Transform scoreDetection;
+	private int playerScore;
+    private int speed = 5;
+    private float distance = 2;
 
+    private void Start()
+    {
+        if (PlayerPrefs.GetInt("playerTotalScore") != 0)
+        {
+            playerScore = PlayerPrefs.GetInt("playerTotalScore");
+        }
+        else
+        {
+            PlayerPrefs.SetInt("playerTotalScore", 10);
+        }
+    }
 
-	void Update()
+    void Update()
 	{
         
         //print UI to screen
-		playerScoreUI.gameObject.GetComponent<Text>().text = ("Score: " + playerScore);	
-	}
+		playerScoreUI.gameObject.GetComponent<Text>().text = ("Score: " + playerScore);
+        PlayerPrefs.SetInt("playerTotalScore", playerScore);
+        Debug.DrawLine(scoreDetection.position, Vector2.down);
+        
+        RaycastHit2D scoreInfo = Physics2D.Raycast(scoreDetection.position, Vector2.down, distance);
+
+    }
     //check 2D trigger / collision
 	void OnTriggerEnter2D(Collider2D trig)
 	{
         //if tag is enemy, call score basic for now 
         if (trig.gameObject.tag == "Enemy")
         {
-			//MovePlayer isAboveEnemy = GetComponent<MovePlayer>();
-
-            //call score function
-            //if (isAboveEnemy == true)
-            //{
-                Score(50);
-            //}
+            Score(50);
+            Destroy(trig.gameObject);
         }
 	}
 
@@ -36,7 +50,7 @@ public class PlayerScore : MonoBehaviour
     {
 		//add score 
 		playerScore += amountOfPoints;
-		PlayerPrefs.SetInt("playerTotalScore", playerScore);
+
     }
 }
 

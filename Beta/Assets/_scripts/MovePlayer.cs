@@ -10,7 +10,6 @@ public class MovePlayer : MonoBehaviour
     private float moveX;
     public bool isGrounded;
     public bool secondJump;
-    public bool isAboveEnemy;
     public int jumps = 0;
 
     // Update is called once per frame
@@ -85,13 +84,11 @@ public class MovePlayer : MonoBehaviour
     }
     void PlayerRaycast()
     {
-        Debug.DrawLine(transform.position, Vector2.down);
+        //Debug.DrawLine(transform.position, Vector2.down);
         RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.down);
-        if (hit.distance < 0.9f && hit.collider.tag == "Enemy")
+        if (hit.distance <= 1.0f && hit.collider.tag == "Enemy")
         {
-            GetComponent<Rigidbody2D>().AddForce(Vector2.up * 1000);
-            isAboveEnemy = true;
+            GetComponent<Rigidbody2D>().AddForce(Vector2.up * playerJumpPower);
         }
-        else { isAboveEnemy = false; }
     }
 }

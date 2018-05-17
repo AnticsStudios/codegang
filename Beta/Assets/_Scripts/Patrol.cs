@@ -5,7 +5,7 @@ using UnityEngine;
 public class Patrol : MonoBehaviour {
     //set some public variables for speed & distance 
 	public float speed = 1;
-	public float distance = 10;
+	private float distance = 10;
     //set bool for character moving right 
 	public bool movingRight = true;
     //set public assignable object in inspector for the empty game object to detect the ground 
@@ -16,7 +16,7 @@ public class Patrol : MonoBehaviour {
 	void Update () 
 	{
 		transform.Translate(Vector2.right * speed * Time.deltaTime);
-
+        Debug.DrawLine(groundDetection.position, Vector2.down);
         // send a ray cast down to detect if there are platforms or not, with this AI it will detect any kind of scalable platform
         // set script on enemy object and place a empty game object about 10-15 to the right in position.x so that way
         // it will send the ray down and detect it before the enemy falls off of the edge 
